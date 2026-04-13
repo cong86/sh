@@ -1,5 +1,5 @@
 #!/bin/bash
-sh_v="4.4.9"
+sh_v="4.4.10-cong86.1"
 
 
 gl_hui='\e[37m'
@@ -21621,7 +21621,7 @@ while true; do
 	echo "------------------------"
 
 	curl -s "${KJ_RAW_PROXY}/kejilion_sh_log.txt" | tail -n 30
-	local sh_v_new=$(curl -s "${KJ_RAW_PROXY}/kejilion.sh" | grep -o 'sh_v="[0-9.]*"' | cut -d '"' -f 2)
+	local sh_v_new=$(curl -s "${KJ_RAW_PROXY}/kejilion.sh" | grep -o 'sh_v="[^"]*"' | cut -d '"' -f 2)
 
 	if [ "$sh_v" = "$sh_v_new" ]; then
 		echo -e "${gl_lv}你已经是最新版本！${gl_huang}v$sh_v${gl_bai}"
