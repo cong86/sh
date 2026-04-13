@@ -21650,10 +21650,10 @@ while true; do
 		1)
 			clear
 			local country=$(curl -s ipinfo.io/country)
+			# 统一仅从单一主脚本路径更新，避免 cn/kejilion.sh 与根目录脚本版本不一致导致覆盖。
+			curl -sS -O "${KJ_RAW_PROXY}/kejilion.sh" && chmod +x kejilion.sh
 			if [ "$country" = "CN" ]; then
-				curl -sS -O "${KJ_RAW_PROXY}/cn/kejilion.sh" && chmod +x kejilion.sh
-			else
-				curl -sS -O "${KJ_RAW_PROXY}/kejilion.sh" && chmod +x kejilion.sh
+				sed -i 's/^canshu="default"/canshu="CN"/g' ./kejilion.sh
 			fi
 			canshu_v6
 			CheckFirstRun_true
